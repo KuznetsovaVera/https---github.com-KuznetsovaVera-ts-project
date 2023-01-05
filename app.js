@@ -1,10 +1,79 @@
 "use strict";
-var _loop_1 = function (i) {
-    setTimeout(function () { return console.log(i); });
-};
-for (var i = 0; i < 3; i++) {
-    _loop_1(i);
+/*
+for (let i = 0; i < 3; i++) {
+    setTimeout(()=> console.log(i));
 }
-//let a = 10;
-//console.log(`a = ${a}`);
+let a = 10;
+console.log(`a = ${a}`);
+*/
+// variables
+/*
+let hello = 'world';
+let b;
+b =10;
+b= 'abc';
+let c: string;
+// function
+function getRandomNumber (min:number, max:number):number {
+return Math.trunc (min + Math.random() * (max - min +1));
+}
+
+*/
+const ASCII_FIRST = 97;
+const ACCII_LAST = 122;
+console.log(`'abz.': ${shiftCipher('abz.')}`);
+console.log(`'abc': ${shiftCipher('abc')}`);
+console.log(`'abz', 27: ${shiftCipher('abz', 27)}`);
+console.log(`'abz', 1000: ${shiftCipher('abz', 1000)}`);
+console.log(`'abz', 26: ${shiftCipher('abz', 26)}`);
+console.log(`'A.&?NM': ${shiftCipher('A.&?NM')}`);
+console.log(`'bcd': ${shiftDecipher('bcd')}`);
+console.log(`'efg', 26: ${shiftDecipher('efg', 26)}`);
+console.log(`'bca', 27: ${shiftDecipher('bca', 27)}`);
+console.log(`'mnl', 1000: ${shiftDecipher('mnl', 1000)}`);
+console.log(`'A.&?NM', 24: ${shiftDecipher('A.&?NM', 24)}`);
+function shiftCipher(str, shift = 1) {
+    let arrayStringIn;
+    let arrayStringOut;
+    let symNew; //?? not in function
+    arrayStringIn = Array.from(str);
+    arrayStringOut = arrayStringIn.map(function (sym) {
+        //let symNew: string;
+        let code;
+        code = sym.charCodeAt(0); //?? only with 0, without - error
+        if (code >= ASCII_FIRST && code <= ACCII_LAST) {
+            for (let i = 0; i < shift; i++) {
+                code == ACCII_LAST ? code = ASCII_FIRST : code++;
+                symNew = String.fromCharCode(code);
+            }
+        }
+        else {
+            symNew = sym;
+        }
+        return symNew;
+    });
+    return arrayStringOut.join('');
+}
+function shiftDecipher(str, shift = 1) {
+    let arrayStringIn;
+    let arrayStringOut;
+    let symNew; //?? not in function
+    arrayStringIn = Array.from(str);
+    arrayStringOut = arrayStringIn.map(function (sym) {
+        //let symNew: string;
+        let code;
+        code = sym.charCodeAt(0); //?? only with 0, without - error
+        if (code >= ASCII_FIRST && code <= ACCII_LAST) {
+            for (let i = 0; i < shift; i++) {
+                code == ASCII_FIRST ? code = ACCII_LAST : code--;
+                symNew = String.fromCharCode(code);
+            }
+        }
+        else {
+            symNew = sym;
+        }
+        return symNew;
+    });
+    return arrayStringOut.join('');
+}
 //# sourceMappingURL=app.js.map
