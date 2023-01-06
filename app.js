@@ -26,12 +26,12 @@ console.log(`'abc': ${shiftCipher('abc')}`);
 console.log(`'abz', 27: ${shiftCipher('abz', 27)}`);
 console.log(`'abz', 1000: ${shiftCipher('abz', 1000)}`);
 console.log(`'abz', 26: ${shiftCipher('abz', 26)}`);
-console.log(`'A.&?NM': ${shiftCipher('A.&?NM')}`);
+console.log(`'A.&?nNM', 2: ${shiftCipher('A.&?nM', 2)}`);
 console.log(`'bcd': ${shiftDecipher('bcd')}`);
 console.log(`'efg', 26: ${shiftDecipher('efg', 26)}`);
 console.log(`'bca', 27: ${shiftDecipher('bca', 27)}`);
 console.log(`'mnl', 1000: ${shiftDecipher('mnl', 1000)}`);
-console.log(`'A.&?NM', 24: ${shiftDecipher('A.&?NM', 24)}`);
+console.log(`'A.&?nM', 2: ${shiftDecipher('A.&?nM', 2)}`);
 function shiftCipher(str, shift = 1) {
     let arrayStringIn;
     let arrayStringOut;
