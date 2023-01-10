@@ -1,11 +1,11 @@
 import { CipDec } from "./cipherDecipher";
 import { CipherDecipher } from "./cipher";
-
+/*
 type TestObj = {
     str: string,
      shift?: number
  }
-
+*/
 // const test1 = new CipherDecipher (32,122,1);
  //const test2: Array<number> = new CipherDecipher (22, 127, 1);
  const str1: string = '77nfE1%^';
