@@ -1,41 +1,61 @@
-import { CipherDecipher } from "./cipherDecipher";
-export class Cipher implements CipherDecipher {
- constructor(private leastASCII : number, private mostASCII : number,
-     private shift : number) {
-          
-    const amountASCCI: number = mostASCII - leastASCII +1;   
+import { CipDec } from "./cipherDecipher";
+type MapperFunction = (symb: string, lesttAS: number, mostAS: number, amountAS: number, shift: number) => string;
 
+export class CipherDecipher implements CipDec {
+      
+ constructor(private leastASCII : number, private mostASCII : number,
+     private shift : number, private amountASCCI: number = mostASCII - leastASCII +1) {
+  
     }
     
     cipher(str: string): string {
-        throw new Error("Method not implemented.");
-    }
+       // console.log ("1:", this.leastASCII, this.mostASCII, this.shift, this.amountASCCI);
+     //   this.foo();
+        return this.cipherDecipher(str, this.mapperCipher)
+          }
     decipher(str: string): string {
-        throw new Error("Method not implemented.");
+        return this.cipherDecipher(str, this.mapperDecipher)
     }
-    
-}
-
-
-type MapperFunction = (symb: string, shift: number) => string;
-function cipherDecipher(str: string, shift: number,
-     mapperFun: MapperFunction): string {
-        
+    /*
+   foo () {
+   
+    console.log("4:", this.leastASCII);
+    console.log ("5:", this.shift);
+    console.log ("6:", this.amountASCCI);
+   }
+*/
+ cipherDecipher(str: string, mapperFun: MapperFunction) {
+       // console.log ("2:", str);
         const arStr: Array<string> = Array.from(str);
-        const arRes: Array<string> = arStr.map(symb => {
-            let res: string = symb;
-            if (symb <= 'z' && symb >= 'a') {
-                res = mapperFun(symb, shift);
-            }
-            return res;
-        })
+       // console.log("4-4:", this.leastASCII);
+        const arRes: Array<string> = arStr.map(symb => mapperFun(symb, this.leastASCII, this.mostASCII, this.amountASCCI, this.shift));
         return arRes.join('');
      }
-     function mapperCipher(symb: string, shift: number) : string {
-        const actualShift: number = (symb.charCodeAt(0) - aCodeAscii + shift) % nEnglishLetters;
-        return String.fromCharCode(aCodeAscii + actualShift);
+
+     mapperCipher(symb: string, leastASCII: number, mostASCII: number, amountASCII: number, shift: number) : string {
+       // console.log("3:", symb)
+        //console.log("4:", leastASCII);
+        //console.log ("5:", shift);
+        //console.log ("6:", amountASCII);
+        const actualShift: number = (symb.charCodeAt(0) - leastASCII + shift) % amountASCII;
+        return String.fromCharCode(leastASCII + actualShift);
      }
-     function mapperDecipher(symb: string, shift: number): string {
-        const actualShift: number = (zCodeAscii - symb.charCodeAt(0) + shift) % nEnglishLetters;
-        return String.fromCharCode(zCodeAscii - actualShift);
+     mapperDecipher(symb: string, leastASCII: number, mostASCII: number, amountASCII: number, shift: number): string {
+       // console.log("3-2:", symb);
+       // const sh: number = this.shift - ERROR,
+        // console.log("4-2:", sh);
+        const actualShift: number = (mostASCII - symb.charCodeAt(0) + shift) % amountASCII;
+        return String.fromCharCode(mostASCII - actualShift);
      }
+   /*
+     mapperDecipher(symb: string): string {
+        console.log("3-2:", symb);
+       // const sh: number = this.shift - ERROR,
+        // console.log("4-2:", sh);
+        const actualShift: number = (this.mostASCII - symb.charCodeAt(0) + this.shift) % this.amountASCCI;
+        return String.fromCharCode(this.mostASCII - actualShift);
+     }
+     */
+
+}
+
