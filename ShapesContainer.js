@@ -1,12 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ShapesContainer = void 0;
-/*
-type ArrayObj = {
-    width: number,
-    height: number
-}
-*/
 class ShapesContainer {
     constructor(arrayShape) {
         this.arrayShape = arrayShape;

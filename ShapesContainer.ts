@@ -1,10 +1,5 @@
 import { Shape } from "./ShapeInterface";
-/*
-type ArrayObj = {
-    width: number,
-    height: number
-}
-*/
+
 export class ShapesContainer implements Shape {
    
     constructor (private arrayShape: Array<Shape>) {
