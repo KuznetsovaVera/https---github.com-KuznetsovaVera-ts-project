@@ -21,13 +21,14 @@ class Company {
     }
     getEmployee(id) {
         {
-            let index = this._Employees.findIndex(el => el.id === id);
+            // let index: number =
+            return this._Employees.findIndex(el => el.id === id);
             //RETURN WHAT??? NULL - ERROR
             // index === -1 ? return null: return index;
-            return index;
+            // return index;
         }
     }
-    // ERROR ??? SALARY!!!
+    // SALARY!!!
     getEmployeeBySalary(salaryFrom, salaryTo) {
         return this._Employees.filter(el => {
             let curSalary = this.totalSalaryEmployee(el);

@@ -1,5 +1,5 @@
 //import { Employee } from "./Employee";
-import { MIN_SALARY } from "./Employee";
+//import { MIN_SALARY } from "./Employee";
 import { WageEmployee } from "./WageEmployee";
 export const MIN_SALES_VALUE: number = 0;
 export const MAX_SALES_VALUE: number = 50000;

@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SalesPerson = exports.MAX_PERCENT = exports.MIN_PERCENT = exports.MAX_SALES_VALUE = exports.MIN_SALES_VALUE = void 0;
+//import { Employee } from "./Employee";
+//import { MIN_SALARY } from "./Employee";
 const WageEmployee_1 = require("./WageEmployee");
 exports.MIN_SALES_VALUE = 0;
 exports.MAX_SALES_VALUE = 50000;

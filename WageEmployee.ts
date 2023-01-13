@@ -25,7 +25,8 @@ export class WageEmployee extends Employee{
     set hours(hours: number) {
         if (hours < MIN_HOURS || hours > MAX_HOURS) {
             throw `wrong hours value must be in range [${MIN_HOURS}-${MAX_HOURS}]`
-        } this._hours= hours;   //?? this.  
+        } this._hours= hours;  
+         // this. obligatory;  
     }
     computeSalary(): number {
         return this.basicSalary +  this._hours * this._wage;

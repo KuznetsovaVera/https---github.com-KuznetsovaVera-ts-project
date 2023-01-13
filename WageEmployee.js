@@ -28,7 +28,8 @@ class WageEmployee extends Employee_1.Employee {
         if (hours < exports.MIN_HOURS || hours > exports.MAX_HOURS) {
             throw `wrong hours value must be in range [${exports.MIN_HOURS}-${exports.MAX_HOURS}]`;
         }
-        this._hours = hours; //?? this.  
+        this._hours = hours;
+        // this. obligatory;  
     }
     computeSalary() {
         return this.basicSalary + this._hours * this._wage;

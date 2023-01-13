@@ -13,7 +13,8 @@ export class Company {
         return this._Employees;
        }
     addEmployee (employee: EmployeeObg)
-       {
+       { //!! add check ID
+         //!! function return VOID
            this._Employees.push(employee);
        }
        removeEmployee(id: number): boolean
@@ -29,24 +30,22 @@ export class Company {
        getEmployee(id: number): number {
         {
             
-            let index: number =
-               this._Employees.findIndex(el => el.id === id);
+           // let index: number =
+             return this._Employees.findIndex(el => el.id === id);
 
                //RETURN WHAT??? NULL - ERROR
            // index === -1 ? return null: return index;
-            return index;
+           // return index;
           }
 
        }
-       // ERROR ??? SALARY!!!
+       // SALARY!!!
        
        getEmployeeBySalary(salaryFrom: number, salaryTo: number): Array<EmployeeObg> {
       return this._Employees.filter (el => {
             let curSalary = this.totalSalaryEmployee (el);
-         
-            if (curSalary >=salaryFrom && curSalary <= salaryTo) {
-            
-               return el;   }
+               if (curSalary >=salaryFrom && curSalary <= salaryTo) {
+                           return el;   }
             });
      
        } 
