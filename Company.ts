@@ -1,63 +1,48 @@
+import { Employee } from "./Employee";
 
-export type EmployeeObg = {
-       id: number, name:string, birthYear: number,
-        department: string, basicSalary: number, 
-        wage: number, hours: number,
-        salesValue: number, percentValue: number
-} 
 export class Company {
  
-   constructor (private _Employees: Array<EmployeeObg>) {
+   constructor (private _Employees: Array<Employee>) {
+
        }
-       get Employees() {
-        return this._Employees;
-       }
-    addEmployee (employee: EmployeeObg)
-       { //!! add check ID
-         //!! function return VOID
-           this._Employees.push(employee);
+       
+    addEmployee (employee: Employee): void
+       { 
+          if (!this._Employees.find (emp => employee.id === emp.id))
+          this._Employees.push(employee);
+                
        }
        removeEmployee(id: number): boolean
        {
          let idTrue: boolean = true;
          let index: number =
             this._Employees.findIndex(el => el.id === id);
-            //console.log ("2.emp:", index)
-         index === -1 ? idTrue = false : this._Employees.splice (index, 1);
-         //console.log ("3.",idTrue, index)
-         return idTrue;
+        index === -1 ? idTrue = false : this._Employees.splice (index, 1);
+        return idTrue;
        }
-       getEmployee(id: number): number {
+       getEmployee(id: number): Employee | null {
         {
-            
-           // let index: number =
-             return this._Employees.findIndex(el => el.id === id);
-
-               //RETURN WHAT??? NULL - ERROR
-           // index === -1 ? return null: return index;
-           // return index;
+         let index: number  = 
+              this._Employees.findIndex (el => 
+               el.id === id);
+           return index ==-1 ? null : this._Employees[index];
           }
 
        }
        // SALARY!!!
        
-       getEmployeeBySalary(salaryFrom: number, salaryTo: number): Array<EmployeeObg> {
-      return this._Employees.filter (el => {
-            let curSalary = this.totalSalaryEmployee (el);
-               if (curSalary >=salaryFrom && curSalary <= salaryTo) {
-                           return el;   }
-            });
-     
+       getEmployeeBySalary(salaryFrom: number, salaryTo: number): Array<Employee> {
+      let empBySalary: Array<Employee> = this._Employees.filter (el => {
+            let curSalary = el.computeSalary(); 
+            return curSalary >=salaryFrom && curSalary <= salaryTo 
+          }   );
+       return empBySalary.sort ((empl1, empl2) => empl1.birthYear > empl2.birthYear ? 1 : -1)
        } 
       
        
         computeBudget (): number {
         return this._Employees.reduce ((res, cur) => 
-        res = res + this.totalSalaryEmployee(cur), 0)
+            res = res + cur.computeSalary(),0)
        }
 
-      private totalSalaryEmployee (employye: EmployeeObg): number {
-       return employye.basicSalary + employye.hours * employye.wage + 
-              (employye.salesValue * employye.percentValue) / 100;
-      }
 }

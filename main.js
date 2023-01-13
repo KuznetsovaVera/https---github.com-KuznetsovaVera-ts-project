@@ -3,58 +3,35 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const SalesPerson_1 = require("./SalesPerson");
 const WageEmployee_1 = require("./WageEmployee");
 const Company_1 = require("./Company");
-const employee = new WageEmployee_1.WageEmployee(123, "Vasya", 2000, "QA", 10000, 100, 50);
+const employee = new WageEmployee_1.WageEmployee(123, "Vasya", 2001, "QA", 10000, 100, 50);
 console.log(employee.id);
 //employee.basicSalary = 60000;
+// check: this._hours= hours - neseccary
 employee.hours = 150;
 console.log(employee.hours);
-const employee2 = new SalesPerson_1.SalesPerson(123, "Vasya", 2000, "QA", 13000, 100, 50, 1000, 20);
+const employee2 = new SalesPerson_1.SalesPerson(124, "Petya", 2002, "QA", 12000, 100, 60, 1000, 10);
 console.log(employee2.percentValue);
 console.log(employee2.computeSalary());
-const emp1 = { id: 123,
-    name: "Vasya",
-    basicSalary: 13000,
-    department: 'QA',
-    salesValue: 1000,
-    wage: 5,
-    hours: 2,
-    percentValue: 10,
-    birthYear: 2000 };
-const emp2 = { id: 124,
-    name: "Petya",
-    basicSalary: 14000,
-    department: 'QA',
-    salesValue: 1000,
-    wage: 5,
-    hours: 2,
-    percentValue: 10,
-    birthYear: 2000 };
-const emp3 = { id: 125,
-    name: "Vova",
-    basicSalary: 15000,
-    department: 'QA',
-    salesValue: 1000,
-    wage: 5,
-    hours: 2,
-    percentValue: 10,
-    birthYear: 2000 };
-const company = new Company_1.Company([emp1, emp2]);
-console.log("1. create -lenght:", company.Employees.length);
-console.log("2. remove 124:", company.removeEmployee(124), company.Employees);
-console.log("3. remove 125:", company.removeEmployee(125));
-console.log("4. add 125:", company.addEmployee(emp3), company);
-company.Employees.forEach((el, ind) => console.log(`index: ${ind}, employee: ${el}`));
-// don't print element, only [object Object]
-company.Employees.forEach((el, ind) => console.log("index: ", ind, el));
-// print element
-const ind = company.getEmployee(123);
-console.log("5. get 123 (0):", ind, company.Employees[ind]);
-console.log("6. get 126 (-1):", company.getEmployee(126));
-console.log("7. by salary:", company.getEmployeeBySalary(10000, 14000));
-console.log("8. total salary:", company.computeBudget(), company.Employees[0]);
-//console.log (company.getEmployee(123))
-//what must return???
-//console.log (company.addEmployee(emp1), company);
-// undefined Company {Employees: Array(3)
-// undefined correct - don't return
+const employee3 = new SalesPerson_1.SalesPerson(125, "Vova", 1990, "QA", 13000, 100, 50, 1000, 20);
+const employee4 = new WageEmployee_1.WageEmployee(126, "Rivka", 2000, "QA", 15000, 100, 50);
+const company = new Company_1.Company([]);
+// TEST addEmployee
+company.addEmployee(employee);
+company.addEmployee(employee2);
+company.addEmployee(employee);
+console.log("1. add Employee:", company); //print:Array(2)
+company.addEmployee(employee3);
+company.addEmployee(employee4);
+//TEST REMOVE EMPLOYEE
+console.log(`2.1 remove Employee (124): ${company.removeEmployee(124)}`);
+console.log(`2.2 remove Employee (127): ${company.removeEmployee(127)}`);
+console.log("2.3 remove Employee: ", company); //print:Array(3) - OK
+// TEST GET EMPLOYEE
+console.log("3.1 get Employee (yes):", company.getEmployee(123));
+console.log("3.2 get Employee (no):", company.getEmployee(127));
+// TEST EMPLOYEES BY SALARY
+const empBySal = company.getEmployeeBySalary(1000, 24000);
+empBySal.forEach(el => console.log("4 Employees by Salary", el));
+// TEST BUDGET
+console.log("5. total salary:", company.computeBudget());
 //# sourceMappingURL=main.js.map

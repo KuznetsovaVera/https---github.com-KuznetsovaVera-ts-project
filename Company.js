@@ -5,44 +5,32 @@ class Company {
     constructor(_Employees) {
         this._Employees = _Employees;
     }
-    get Employees() {
-        return this._Employees;
-    }
     addEmployee(employee) {
-        this._Employees.push(employee);
+        if (!this._Employees.find(emp => employee.id === emp.id))
+            this._Employees.push(employee);
     }
     removeEmployee(id) {
         let idTrue = true;
         let index = this._Employees.findIndex(el => el.id === id);
-        //console.log ("2.emp:", index)
         index === -1 ? idTrue = false : this._Employees.splice(index, 1);
-        //console.log ("3.",idTrue, index)
         return idTrue;
     }
     getEmployee(id) {
         {
-            // let index: number =
-            return this._Employees.findIndex(el => el.id === id);
-            //RETURN WHAT??? NULL - ERROR
-            // index === -1 ? return null: return index;
-            // return index;
+            let index = this._Employees.findIndex(el => el.id === id);
+            return index == -1 ? null : this._Employees[index];
         }
     }
     // SALARY!!!
     getEmployeeBySalary(salaryFrom, salaryTo) {
-        return this._Employees.filter(el => {
-            let curSalary = this.totalSalaryEmployee(el);
-            if (curSalary >= salaryFrom && curSalary <= salaryTo) {
-                return el;
-            }
+        let empBySalary = this._Employees.filter(el => {
+            let curSalary = el.computeSalary();
+            return curSalary >= salaryFrom && curSalary <= salaryTo;
         });
+        return empBySalary.sort((empl1, empl2) => empl1.birthYear > empl2.birthYear ? 1 : -1);
     }
     computeBudget() {
-        return this._Employees.reduce((res, cur) => res = res + this.totalSalaryEmployee(cur), 0);
-    }
-    totalSalaryEmployee(employye) {
-        return employye.basicSalary + employye.hours * employye.wage +
-            (employye.salesValue * employye.percentValue) / 100;
+        return this._Employees.reduce((res, cur) => res = res + cur.computeSalary(), 0);
     }
 }
 exports.Company = Company;
